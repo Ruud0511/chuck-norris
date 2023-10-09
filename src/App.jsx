@@ -1,10 +1,14 @@
-import { useState } from 'react'
+import {useEffect, useState} from 'react'
 import './App.css'
 import axios from "axios";
 
 function App() {
   const [joke, setJoke] = useState('');
   const [error, toggleError]  = useState(false);
+
+    useEffect(() => {
+        fetchJoke()
+    }, []);
 
   async function fetchJoke() {
       toggleError(false);
@@ -22,7 +26,7 @@ function App() {
     <>
       <div>
        <h1>Chuck Norris API</h1>
-       <button type="button" onClick={fetchJoke}>Haal een grapje op!</button>
+       {/*<button type="button" onClick={fetchJoke}>Haal een grapje op!</button>*/}
           {error && <p className="error-message">Er is iets misgegaan...</p>}
           <p>{joke}</p>
       </div>
